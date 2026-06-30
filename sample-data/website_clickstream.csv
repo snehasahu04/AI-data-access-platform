@@ -1,0 +1,11 @@
+session_id,customer_id,page_visited,clicks,device,session_duration_seconds,visit_date
+S001,1001,Dashboard,25,Laptop,900,2026-06-08
+S002,1002,Pricing Page,8,Mobile,180,2026-04-14
+S003,1003,Reports,15,Desktop,600,2026-05-30
+S004,1005,Admin Panel,40,Laptop,1200,2026-06-05
+S005,1007,ML Studio,50,Desktop,1500,2026-06-09
+S006,1004,Home Page,5,Mobile,90,2026-03-20
+S007,1008,Support Page,6,Tablet,200,2026-04-05
+S008,1009,Analytics Page,20,Laptop,750,2026-06-01
+S009,1010,Dashboard,12,Mobile,350,2026-05-04
+S010,1006,Settings,10,Desktop,300,2026-05-28

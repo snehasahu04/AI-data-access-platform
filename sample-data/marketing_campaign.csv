@@ -1,0 +1,11 @@
+campaign_id,campaign_name,channel,region,budget,impressions,clicks,conversions,status
+M001,Summer Sale,Google Ads,APAC,10000,500000,20000,1500,Active
+M002,New User Offer,Facebook,US,15000,700000,30000,2500,Completed
+M003,Enterprise Growth,LinkedIn,EU,20000,300000,12000,900,Active
+M004,Product Launch,YouTube,Global,50000,1000000,50000,5000,Completed
+M005,Retention Campaign,Email,APAC,5000,100000,8000,700,Active
+M006,Premium Upgrade,Email,US,8000,150000,10000,850,Completed
+M007,AI Tool Promotion,Google Ads,EU,12000,250000,15000,1100,Active
+M008,Holiday Discount,Instagram,APAC,9000,400000,18000,1400,Completed
+M009,Customer Winback,Email,US,7000,90000,6000,500,Active
+M010,Brand Awareness,YouTube,Global,30000,800000,35000,3000,Completed

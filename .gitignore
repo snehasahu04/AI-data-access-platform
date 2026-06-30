@@ -1,0 +1,27 @@
+# Virtual environments
+.venv/
+.venv-1/
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Environment variables
+.env
+
+# Database
+*.db
+
+# IDE
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+
+# Pytest cache
+.pytest_cache/
+
+# Claude config (optional)
+.claude/

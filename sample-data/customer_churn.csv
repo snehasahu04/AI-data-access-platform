@@ -1,0 +1,11 @@
+customer_id,customer_name,region,subscription_plan,tenure_months,monthly_bill,churned,last_active_date
+1001,Rahul Sharma,APAC,Premium,24,120,No,2026-06-01
+1002,Anita Verma,US,Basic,6,45,Yes,2026-04-15
+1003,John Smith,EU,Premium,18,100,No,2026-05-28
+1004,Priya Singh,APAC,Basic,3,40,Yes,2026-03-20
+1005,David Lee,US,Enterprise,36,500,No,2026-06-05
+1006,Sneha Patel,EU,Premium,12,90,No,2026-05-30
+1007,Arjun Gupta,APAC,Enterprise,48,700,No,2026-06-08
+1008,Emma Wilson,US,Basic,5,50,Yes,2026-04-02
+1009,Robert Brown,EU,Premium,20,110,No,2026-06-03
+1010,Kavita Joshi,APAC,Basic,8,55,Yes,2026-05-01

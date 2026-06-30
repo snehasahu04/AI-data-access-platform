@@ -1,0 +1,141 @@
+{
+  "name": "Enterprise Data Access Request",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "access-request",
+        "options": {
+          "responseCode": 200,
+          "responseMode": "onReceived"
+        }
+      },
+      "name": "Request Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "authentication": "none",
+        "url": "={{$json[\"workflowUrl\"] || 'http://localhost:8000/ai/classify'}}",
+        "options": {
+          "bodyContentType": "json",
+          "jsonParameters": true,
+          "bodyParametersJson": "={ \"request_text\": $json.request_text, \"business_domain\": $json.business_domain, \"tags\": $json.tags }"
+        }
+      },
+      "name": "AI Classification",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [500, 300]
+    },
+    {
+      "parameters": {
+        "functionCode": "return [{ json: { status: 'classification_complete', classification: $json } }];"
+      },
+      "name": "Generate Workflow Decision",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [750, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$json[\"classification\"][\"recommended_datasets\"]?.length > 0 ? 'requiresApproval' : 'noDatasetFound']}}",
+              "value2": "requiresApproval"
+            }
+          ]
+        }
+      },
+      "name": "Approval Branch",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [1000, 300]
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "send",
+        "application": "Slack",
+        "channel": "#data-access-notifications",
+        "text": "={{ 'Access request received for dataset recommendation: ' + JSON.stringify($json.classification.recommended_datasets) }}"
+      },
+      "name": "Notify Slack",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [1200, 180]
+    },
+    {
+      "parameters": {
+        "webhookId": "send-approval-request",
+        "method": "POST",
+        "options": {
+          "payload": {
+            "jsonParameters": true,
+            "propertyName": "data"
+          }
+        }
+      },
+      "name": "Send Approval Request",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [1200, 420]
+    }
+  ],
+  "connections": {
+    "Request Webhook": {
+      "main": [
+        [
+          {
+            "node": "AI Classification",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Classification": {
+      "main": [
+        [
+          {
+            "node": "Generate Workflow Decision",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Workflow Decision": {
+      "main": [
+        [
+          {
+            "node": "Approval Branch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Approval Branch": {
+      "main": [
+        [
+          {
+            "node": "Notify Slack",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send Approval Request",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    }
+  }
+}

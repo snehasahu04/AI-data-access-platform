@@ -1,0 +1,11 @@
+usage_id,customer_id,feature_name,sessions,time_spent_minutes,last_used
+9001,1001,AI Insights,25,300,2026-06-08
+9002,1002,Dashboard,5,45,2026-04-10
+9003,1005,Data Export,40,600,2026-06-07
+9004,1007,ML Studio,60,900,2026-06-09
+9005,1003,Reports,22,240,2026-06-02
+9006,1004,Dashboard,3,20,2026-03-18
+9007,1008,Analytics,6,55,2026-04-01
+9008,1010,Reports,10,100,2026-05-03
+9009,1009,AI Insights,18,210,2026-06-05
+9010,1006,Data Export,15,170,2026-05-29

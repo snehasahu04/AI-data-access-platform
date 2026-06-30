@@ -1,0 +1,11 @@
+order_id,customer_id,region,product,quantity,amount,purchase_date,payment_status
+5001,1001,APAC,Cloud Storage,2,240,2026-05-10,Completed
+5002,1002,US,Analytics Tool,1,80,2026-04-12,Completed
+5003,1005,US,Enterprise Suite,1,1500,2026-06-01,Completed
+5004,1007,APAC,AI Platform,3,2100,2026-06-04,Completed
+5005,1003,EU,Dashboard Tool,2,300,2026-05-15,Completed
+5006,1004,APAC,Cloud Storage,1,120,2026-03-25,Refunded
+5007,1008,US,Basic Package,1,50,2026-04-01,Completed
+5008,1010,APAC,Marketing Tool,2,200,2026-05-05,Completed
+5009,1009,EU,Analytics Tool,1,100,2026-06-02,Completed
+5010,1006,EU,Premium Support,1,250,2026-05-20,Completed
