@@ -45,7 +45,9 @@ def parse_request_text(request_text: str) -> RequestIntent:
         f"SELECT * FROM dataset WHERE business_domain = '{business_domain}'"
     )
     if time_granularity:
-        suggested_query += f" AND date_trunc('{time_granularity}', event_timestamp) AS period"
+        suggested_query += (
+            f" AND date_trunc('{time_granularity}', event_timestamp) AS period"
+        )
     if customer_type:
         suggested_query += f" AND customer_type = '{customer_type}'"
 
@@ -55,5 +57,5 @@ def parse_request_text(request_text: str) -> RequestIntent:
         time_granularity=time_granularity,
         customer_type=customer_type,
         recommended_datasets=[],
-        suggested_query=suggested_query
+        suggested_query=suggested_query,
     )

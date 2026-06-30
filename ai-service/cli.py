@@ -1,4 +1,5 @@
 """Simple CLI to run pipeline stages locally for testing/demo."""
+
 import argparse
 from pathlib import Path
 
@@ -17,6 +18,7 @@ def run_all(sample_csv: str):
 
     # prepare metrics for agent
     import json
+
     with open(res["metrics"], "r", encoding="utf-8") as f:
         metrics = json.load(f)
     # add anomalies count if available from anomaly output

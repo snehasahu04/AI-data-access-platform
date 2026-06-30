@@ -11,7 +11,9 @@ def _ensure_dir(path):
 DEFAULT_RULES = {
     "null_transaction_id": lambda df: df["transaction_id"].isnull(),
     "negative_amount": lambda df: df["amount"] < 0,
-    "invalid_timestamp": lambda df: pd.to_datetime(df["timestamp"], errors="coerce").isna(),
+    "invalid_timestamp": lambda df: pd.to_datetime(
+        df["timestamp"], errors="coerce"
+    ).isna(),
 }
 
 
@@ -46,7 +48,11 @@ def validate_bronze(bronze_parquet: str, silver_dir: str) -> Dict[str, str]:
     with open(os.path.join(silver_dir, "dq_metrics.json"), "w", encoding="utf-8") as f:
         json.dump(metrics, f, indent=2)
 
-    return {"valid": valid_path, "invalid": invalid_path, "metrics": os.path.join(silver_dir, "dq_metrics.json")}
+    return {
+        "valid": valid_path,
+        "invalid": invalid_path,
+        "metrics": os.path.join(silver_dir, "dq_metrics.json"),
+    }
 
 
 if __name__ == "__main__":

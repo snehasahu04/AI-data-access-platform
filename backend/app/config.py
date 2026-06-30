@@ -1,7 +1,6 @@
 import os
 from dotenv import load_dotenv
 
-
 # .env file load karo
 load_dotenv()
 

@@ -6,10 +6,7 @@ from ..database.connection import get_db
 from ..services.catalog_service import search_datasets, recommend_datasets
 from ..schemas.catalog import DatasetCatalogResponse
 
-router = APIRouter(
-    prefix="/catalog",
-    tags=["Metadata Catalog"]
-)
+router = APIRouter(prefix="/catalog", tags=["Metadata Catalog"])
 
 
 @router.get("/search", response_model=list[DatasetCatalogResponse])
@@ -19,7 +16,7 @@ def catalog_search(
     sensitivity: Optional[str] = Query(None),
     access_level: Optional[str] = Query(None),
     tags: Optional[str] = Query(None),
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
 ):
     return search_datasets(
         db=db,
@@ -27,7 +24,7 @@ def catalog_search(
         business_domain=business_domain,
         sensitivity=sensitivity,
         access_level=access_level,
-        tags=tags
+        tags=tags,
     )
 
 
@@ -36,11 +33,8 @@ def catalog_recommend(
     business_domain: Optional[str] = Query(None),
     tags: Optional[str] = Query(None),
     top_n: int = Query(5, ge=1, le=20),
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
 ):
     return recommend_datasets(
-        db=db,
-        business_domain=business_domain,
-        tags=tags,
-        top_n=top_n
+        db=db, business_domain=business_domain, tags=tags, top_n=top_n
     )

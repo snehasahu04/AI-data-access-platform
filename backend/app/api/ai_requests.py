@@ -22,10 +22,7 @@ class RequestIntentResponse(BaseModel):
     suggested_query: str | None = None
 
 
-router = APIRouter(
-    prefix="/ai",
-    tags=["AI Request Understanding"]
-)
+router = APIRouter(prefix="/ai", tags=["AI Request Understanding"])
 
 
 @router.post("/classify", response_model=RequestIntentResponse)
@@ -34,7 +31,7 @@ def classify_request(input: RequestIntentInput, db: Session = Depends(get_db)):
         db=db,
         request_text=input.request_text,
         business_domain=input.business_domain,
-        tags=input.tags
+        tags=input.tags,
     )
 
     return RequestIntentResponse(
@@ -43,5 +40,5 @@ def classify_request(input: RequestIntentInput, db: Session = Depends(get_db)):
         time_granularity=workflow["intent"]["time_granularity"],
         customer_type=workflow["intent"]["customer_type"],
         recommended_datasets=workflow["recommended_datasets"],
-        suggested_query=workflow["intent"]["suggested_query"]
+        suggested_query=workflow["intent"]["suggested_query"],
     )

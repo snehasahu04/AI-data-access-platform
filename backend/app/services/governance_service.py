@@ -11,7 +11,10 @@ def determine_approval_path(dataset_metadata: Dict) -> Dict[str, str]:
         return {"approval_required": "none", "workflow": "auto_approve"}
     if sensitivity in ["confidential", "restricted", "pii", "sensitive"]:
         if access_level == "read":
-            return {"approval_required": "manager_and_de", "workflow": "governance_review"}
+            return {
+                "approval_required": "manager_and_de",
+                "workflow": "governance_review",
+            }
         return {"approval_required": "security_and_de", "workflow": "security_review"}
 
     return {"approval_required": "manager", "workflow": "standard_review"}
@@ -20,6 +23,8 @@ def determine_approval_path(dataset_metadata: Dict) -> Dict[str, str]:
 def evaluate_access_request(request_meta: Dict) -> Dict[str, bool]:
     return {
         "is_sensitive": is_sensitive_dataset(request_meta.get("sensitivity", "public")),
-        "requires_approval": request_meta.get("sensitivity", "public").lower() != "public",
-        "requires_data_governance": request_meta.get("sensitivity", "public").lower() in ["pii", "restricted", "confidential"]
+        "requires_approval": request_meta.get("sensitivity", "public").lower()
+        != "public",
+        "requires_data_governance": request_meta.get("sensitivity", "public").lower()
+        in ["pii", "restricted", "confidential"],
     }

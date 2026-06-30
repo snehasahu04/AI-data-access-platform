@@ -1,10 +1,6 @@
 import streamlit as st
 
-st.set_page_config(
-    page_title="AI Data Access Platform",
-    page_icon="🔐",
-    layout="wide"
-)
+st.set_page_config(page_title="AI Data Access Platform", page_icon="🔐", layout="wide")
 
 st.title("🔐 AI Data Access Provisioning Platform")
 
@@ -36,4 +32,4 @@ with col2:
     st.success("✅ Manage Approvals")
 
 with col3:
-    st.warning("📊 View Analytics") 
+    st.warning("📊 View Analytics")

@@ -17,9 +17,6 @@ class AuditLog(Base):
 
     status = Column(String(50))
 
-    created_at = Column(
-        TIMESTAMP,
-        server_default=text("CURRENT_TIMESTAMP")
-    )
+    created_at = Column(TIMESTAMP, server_default=text("CURRENT_TIMESTAMP"))
 
     performed_by = Column(String(255))

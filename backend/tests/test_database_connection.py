@@ -23,7 +23,11 @@ class DummyEngine:
 
 
 def test_create_engine_from_settings_falls_back_to_sqlite(monkeypatch):
-    monkeypatch.setattr(connection_module.settings, "DATABASE_URL", "postgresql://user:pass@localhost:5432/app")
+    monkeypatch.setattr(
+        connection_module.settings,
+        "DATABASE_URL",
+        "postgresql://user:pass@localhost:5432/app",
+    )
 
     def fake_create_engine(url, echo=True):
         if url.startswith("postgresql"):

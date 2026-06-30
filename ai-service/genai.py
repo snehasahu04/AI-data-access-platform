@@ -23,7 +23,9 @@ def build_genai_prompt(metrics_path: str, sample_anomalies: List[dict]) -> str:
     if sample_anomalies:
         parts.append("Sample anomalies (sanitized):")
         for s in sample_anomalies[:5]:
-            parts.append(f"- transaction_id={s.get('transaction_id')} amount={s.get('amount')}")
+            parts.append(
+                f"- transaction_id={s.get('transaction_id')} amount={s.get('amount')}"
+            )
 
     prompt = "\n".join(parts)
     return prompt

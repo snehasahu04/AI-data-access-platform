@@ -6,11 +6,10 @@ from .api.approvals import router as approval_router
 from .api.catalog import router as catalog_router
 from .api.ai_requests import router as ai_router
 
-
 app = FastAPI(
     title="AI Data Access Provisioning Platform",
     description="Automated Data Access Governance System",
-    version="1.0.0"
+    version="1.0.0",
 )
 
 
@@ -25,6 +24,4 @@ app.include_router(ai_router)
 # Health Check API
 @app.get("/")
 def health_check():
-    return {
-        "message": "AI Data Access Platform is running successfully"
-    }
+    return {"message": "AI Data Access Platform is running successfully"}

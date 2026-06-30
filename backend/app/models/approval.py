@@ -7,26 +7,12 @@ class Approval(Base):
 
     id = Column(Integer, primary_key=True, index=True)
 
-    request_id = Column(
-        Integer,
-        ForeignKey("access_requests.id"),
-        nullable=False
-    )
+    request_id = Column(Integer, ForeignKey("access_requests.id"), nullable=False)
 
-    approver_id = Column(
-        Integer,
-        ForeignKey("users.id"),
-        nullable=False
-    )
+    approver_id = Column(Integer, ForeignKey("users.id"), nullable=False)
 
-    decision = Column(
-        String,
-        nullable=False
-    )
+    decision = Column(String, nullable=False)
 
     comments = Column(Text)
 
-    approved_at = Column(
-        TIMESTAMP,
-        server_default=text("CURRENT_TIMESTAMP")
-    )
+    approved_at = Column(TIMESTAMP, server_default=text("CURRENT_TIMESTAMP"))

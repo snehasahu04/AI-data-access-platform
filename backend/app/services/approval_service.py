@@ -6,19 +6,11 @@ from .audit_service import create_audit_log
 
 
 def process_approval(
-    db: Session,
-    request_id: int,
-    approver_id: int,
-    decision: str,
-    comments: str = None
+    db: Session, request_id: int, approver_id: int, decision: str, comments: str = None
 ):
 
     # Find access request
-    request = (
-        db.query(AccessRequest)
-        .filter(AccessRequest.id == request_id)
-        .first()
-    )
+    request = db.query(AccessRequest).filter(AccessRequest.id == request_id).first()
 
     if not request:
         raise Exception("Access request not found")
@@ -28,7 +20,7 @@ def process_approval(
         request_id=request_id,
         approver_id=approver_id,
         decision=decision,
-        comments=comments
+        comments=comments,
     )
 
     db.add(approval)
@@ -50,7 +42,7 @@ def process_approval(
         entity_type="ACCESS_REQUEST",
         entity_id=request.id,
         status=request.status,
-        performed_by=str(approver_id)
+        performed_by=str(approver_id),
     )
 
     return approval

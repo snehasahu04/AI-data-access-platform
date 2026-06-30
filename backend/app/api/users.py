@@ -5,11 +5,7 @@ from ..database.connection import get_db
 from ..models.user import User
 from ..schemas.user import UserResponse
 
-
-router = APIRouter(
-    prefix="/users",
-    tags=["Users"]
-)
+router = APIRouter(prefix="/users", tags=["Users"])
 
 
 # Get all users

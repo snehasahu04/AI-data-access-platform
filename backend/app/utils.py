@@ -31,21 +31,12 @@ def is_sensitive_dataset(sensitivity: str):
     Check if dataset requires approval
     """
 
-    sensitive_levels = [
-        "pii",
-        "restricted",
-        "confidential",
-        "sensitive"
-    ]
+    sensitive_levels = ["pii", "restricted", "confidential", "sensitive"]
 
     return normalize_text(sensitivity) in sensitive_levels
 
 
-def format_audit_message(
-    action: str,
-    user: str,
-    resource: str
-):
+def format_audit_message(action: str, user: str, resource: str):
     """
     Create standard audit log message
     """
@@ -64,23 +55,15 @@ def validate_access_duration(days: int):
     """
 
     if days <= 0:
-        raise ValueError(
-            "Access duration must be greater than zero"
-        )
+        raise ValueError("Access duration must be greater than zero")
 
     if days > 90:
-        raise ValueError(
-            "Access duration cannot exceed 90 days"
-        )
+        raise ValueError("Access duration cannot exceed 90 days")
 
     return True
 
 
-def create_api_response(
-    status: str,
-    message: str,
-    data=None
-):
+def create_api_response(status: str, message: str, data=None):
     """
     Standard API response format
     """
@@ -89,5 +72,5 @@ def create_api_response(
         "status": status,
         "message": message,
         "data": data,
-        "timestamp": str(get_current_timestamp())
+        "timestamp": str(get_current_timestamp()),
     }

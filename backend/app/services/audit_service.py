@@ -9,7 +9,7 @@ def create_audit_log(
     entity_type: str,
     entity_id: int,
     status: str,
-    performed_by: str
+    performed_by: str,
 ):
     """
     Create an audit log entry.
@@ -21,7 +21,7 @@ def create_audit_log(
         entity_type=entity_type,
         entity_id=entity_id,
         status=status,
-        performed_by=performed_by
+        performed_by=performed_by,
     )
 
     db.add(audit)

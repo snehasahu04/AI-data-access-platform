@@ -12,7 +12,7 @@ def search_datasets(
     business_domain: Optional[str] = None,
     sensitivity: Optional[str] = None,
     access_level: Optional[str] = None,
-    tags: Optional[str] = None
+    tags: Optional[str] = None,
 ) -> List[Dataset]:
     query = db.query(Dataset)
 
@@ -23,18 +23,24 @@ def search_datasets(
                 Dataset.dataset_name.ilike(normalized),
                 Dataset.owner.ilike(normalized),
                 Dataset.tags.ilike(normalized),
-                Dataset.business_domain.ilike(normalized)
+                Dataset.business_domain.ilike(normalized),
             )
         )
 
     if business_domain:
-        query = query.filter(Dataset.business_domain.ilike(f"%{normalize_text(business_domain)}%"))
+        query = query.filter(
+            Dataset.business_domain.ilike(f"%{normalize_text(business_domain)}%")
+        )
 
     if sensitivity:
-        query = query.filter(Dataset.sensitivity.ilike(f"%{normalize_text(sensitivity)}%"))
+        query = query.filter(
+            Dataset.sensitivity.ilike(f"%{normalize_text(sensitivity)}%")
+        )
 
     if access_level:
-        query = query.filter(Dataset.access_level.ilike(f"%{normalize_text(access_level)}%"))
+        query = query.filter(
+            Dataset.access_level.ilike(f"%{normalize_text(access_level)}%")
+        )
 
     if tags:
         query = query.filter(Dataset.tags.ilike(f"%{normalize_text(tags)}%"))
@@ -46,12 +52,14 @@ def recommend_datasets(
     db: Session,
     business_domain: Optional[str] = None,
     tags: Optional[str] = None,
-    top_n: int = 5
+    top_n: int = 5,
 ) -> List[Dataset]:
     query = db.query(Dataset)
 
     if business_domain:
-        query = query.filter(Dataset.business_domain.ilike(f"%{normalize_text(business_domain)}%"))
+        query = query.filter(
+            Dataset.business_domain.ilike(f"%{normalize_text(business_domain)}%")
+        )
 
     if tags:
         query = query.filter(Dataset.tags.ilike(f"%{normalize_text(tags)}%"))
