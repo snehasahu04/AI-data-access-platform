@@ -28,11 +28,10 @@ jobs:
           pip install -r requirements.txt
           pip install pytest black httpx
 
-      - name: Run tests
-        env:
-          PYTHONPATH: .
-        run: |
-          pytest -q
+      - - name: Run tests
+          run: |
+            export PYTHONPATH=$PWD
+            pytest -q
 
       - name: Format check
         run: |
